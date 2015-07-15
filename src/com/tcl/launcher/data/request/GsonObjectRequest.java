@@ -18,13 +18,13 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.tcl.launcher.config.Config;
+import com.tcl.launcher.Config;
 
 /**
  * @see com.android.volley.toolbox.JsonObjectRequest(int, String, org.json.JSONObject , com.android.volley.Response.Listener , com.android.volley.Response.ErrorListener )
- * 鍙傛暟JSONObject锛坖sonRequest锛夊彂閫佺殑post鍙傛暟鏍煎紡涓� {"Token":"abfffe59392653a4106d56f89ac7ccc4","ajax":"1"}
+ * 参数JSONObject（jsonRequest）发送的post参数格式为 {"Token":"abfffe59392653a4106d56f89ac7ccc4","ajax":"1"}
  *
- * 瑕嗙洊getParams() 鍙戦�佺殑post鍙傛暟鏍煎紡涓� Token=abfffe59392653a4106d56f89ac7ccc4&ajax=1&
+ * 覆盖getParams() 发送的post参数格式为 Token=abfffe59392653a4106d56f89ac7ccc4&ajax=1&
  *
  * Created by gchen on 14-1-8.
  */
@@ -32,7 +32,7 @@ public class GsonObjectRequest<T> extends GsonRequest<T> {
 
     private final Gson mGson;
     private final Class<T> mClassOfT;
-
+    
     /**
      * Creates a new request.
      * @param method the HTTP method to use
@@ -55,7 +55,7 @@ public class GsonObjectRequest<T> extends GsonRequest<T> {
     }
 
     /**
-     * @param expose Gson搴忓垪鍖�/鍙嶅簭鍒楀寲鏄惁寮�鍚疉nnotation @Expose
+     * @param expose Gson序列化/反序列化是否开启Annotation @Expose
      */
     public GsonObjectRequest(int method, String url, Map params, Class<T> classOfT, boolean expose,
                              Listener<T> listener, ErrorListener errorListener) {
